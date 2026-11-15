@@ -1,11 +1,16 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "Рецепты",
-  "orientation": "any",
-  "scope": "/",
+  "name": "Моя Кулинарная Книга",
   "short_name": "Рецепты",
-  "start_url": "/",
-  "theme_color": "#F7F9F7"
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4D7C3E",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
