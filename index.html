@@ -9,10 +9,8 @@
     <meta name="apple-mobile-web-app-title" content="Рецепты">
     <title>Моя Кулинарная Книга</title>
     
-    <!-- Подключение Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Шрифт Inter и Lora для уютной типографики -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
@@ -41,10 +39,6 @@
                             600: '#547258',
                             700: '#415844',
                         },
-                        terracotta: {
-                            500: '#738A76',
-                            600: '#5A705D',
-                        },
                         charcoal: {
                             700: '#444B45',
                             800: '#2E342F',
@@ -61,48 +55,26 @@
     </script>
 
     <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            background-color: #F2F5F3;
-            color: #1C201D;
-            overscroll-behavior-y: none;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .view-transition {
-            animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .ingredient-checked {
-            text-decoration: line-through;
-            color: #9CA3AF;
-            transition: all 0.2s ease;
-        }
+        * { -webkit-tap-highlight-color: transparent; }
+        body { background-color: #F2F5F3; color: #1C201D; overscroll-behavior-y: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .view-transition { animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .ingredient-checked { text-decoration: line-through; color: #9CA3AF; transition: all 0.2s ease; }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-sage-200 selection:text-sage-700">
 
     <div id="app" class="max-w-md mx-auto min-h-screen bg-cream-100 relative shadow-xl sm:border-x sm:border-cream-200 flex flex-col">
 
-        <!-- ================= ГЛАВНЫЙ ЭКРАН ================= -->
+        <!-- ГЛАВНЫЙ ЭКРАН -->
         <div id="view-home" class="flex-1 flex flex-col pb-24 view-transition">
             <header class="sticky top-0 z-20 bg-cream-100/95 backdrop-blur-md px-5 pt-5 pb-3 border-b border-cream-200">
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-3">
-                        <!-- Иллюстрация: Авокадо и яйцо в обнимку -->
                         <div class="w-13 h-13 rounded-2xl bg-sage-100 border border-sage-200 shadow-soft flex items-center justify-center shrink-0 overflow-hidden p-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-12 h-12 drop-shadow-xs">
-                                <!-- Авокадо слева -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-12 h-12">
                                 <path d="M35 15 C20 15 12 37 12 57 C12 75 22 88 35 88 C48 88 56 75 56 57 C56 37 48 15 35 15 Z" fill="#415844"/>
                                 <path d="M35 20 C23 20 17 39 17 57 C17 72 25 83 35 83 C45 83 51 72 51 57 C51 39 45 20 35 20 Z" fill="#C2D8C5"/>
                                 <circle cx="35" cy="62" r="10" fill="#8C5830"/>
@@ -112,8 +84,6 @@
                                 <path d="M33 46 Q35 48.5 37 46" stroke="#2D3A2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
                                 <circle cx="26" cy="45" r="2" fill="#F472B6" opacity="0.8"/>
                                 <circle cx="44" cy="45" r="2" fill="#F472B6" opacity="0.8"/>
-                                
-                                <!-- Яйцо справа в обнимку -->
                                 <path d="M65 25 C55 25 48 40 48 58 C48 74 55 88 65 88 C75 88 82 74 82 58 C82 40 75 25 65 25 Z" fill="#FFFDF9" stroke="#D1DCD3" stroke-width="2"/>
                                 <circle cx="65" cy="64" r="9.5" fill="#FACC15"/>
                                 <path d="M59 47 Q61 44 63 47" stroke="#37413B" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -121,8 +91,6 @@
                                 <path d="M63 51 Q65 53 67 51" stroke="#37413B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
                                 <circle cx="56" cy="50" r="1.8" fill="#F472B6" opacity="0.8"/>
                                 <circle cx="74" cy="50" r="1.8" fill="#F472B6" opacity="0.8"/>
-
-                                <!-- Ручки в обнимку -->
                                 <path d="M48 55 Q56 61 52 68" stroke="#415844" stroke-width="3.5" fill="none" stroke-linecap="round"/>
                             </svg>
                         </div>
@@ -131,7 +99,7 @@
                             <h1 class="font-serif text-2xl font-semibold text-charcoal-900">Мои рецепты</h1>
                         </div>
                     </div>
-                    <button onclick="openSettingsModal()" aria-label="Настройки" class="p-2.5 rounded-2xl bg-white text-charcoal-700 shadow-soft border border-cream-200 hover:bg-cream-50 active:scale-95 transition">
+                    <button onclick="openSettingsModal()" class="p-2.5 rounded-2xl bg-white text-charcoal-700 shadow-soft border border-cream-200 hover:bg-cream-50 active:scale-95 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -139,7 +107,6 @@
                     </button>
                 </div>
 
-                <!-- Поиск -->
                 <div class="relative mb-3">
                     <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-charcoal-700/50">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -155,7 +122,6 @@
                     </button>
                 </div>
 
-                <!-- Фильтры категорий -->
                 <div id="category-filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1"></div>
             </header>
 
@@ -174,7 +140,6 @@
                 </div>
             </main>
 
-            <!-- Кнопка добавить (+) -->
             <button onclick="openCreateView()" aria-label="Добавить рецепт" 
                     class="fixed bottom-6 right-6 sm:right-[calc(50%-12.5rem)] z-30 w-14 h-14 rounded-full bg-sage-600 hover:bg-sage-700 text-white shadow-float flex items-center justify-center active:scale-90 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -183,8 +148,657 @@
             </button>
         </div>
 
-        <!-- ================= ЭКРАН ПРОСМОТРА ================= -->
+        <!-- ЭКРАН ПРОСМОТРА -->
         <div id="view-detail" class="hidden flex-1 flex-col bg-cream-50 pb-12 view-transition">
             <div class="relative w-full h-72 bg-cream-200">
                 <img id="detail-image" src="" alt="Фото блюда" class="w-full h-full object-cover">
-                <div id="detail-placeholder" class="hidden w-full h-full bg-gradient-to-br from-sage-10
+                <div id="detail-placeholder" class="hidden w-full h-full bg-gradient-to-br from-sage-100 via-cream-200 to-sage-200 flex flex-col items-center justify-center text-sage-700/70">
+                    <span class="text-xs font-medium tracking-wide uppercase">Без фотографии</span>
+                </div>
+                <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
+
+                <div class="absolute top-4 inset-x-4 flex items-center justify-between">
+                    <button onclick="showHomeView()" class="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-charcoal-900 shadow-md flex items-center justify-center active:scale-95 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <button id="detail-edit-btn" class="px-3.5 py-2 rounded-full bg-white/90 backdrop-blur-md text-charcoal-900 text-xs font-semibold shadow-md flex items-center gap-1.5">
+                            Изменить
+                        </button>
+                        <button id="detail-delete-btn" aria-label="Удалить" class="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-red-600 shadow-md flex items-center justify-center">
+                            ✕
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative -mt-6 bg-cream-50 rounded-t-3xl px-5 pt-6 flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <select id="detail-category-select" onchange="changeRecipeCategoryFromDetail(this.value)" class="px-3 py-1 rounded-full text-xs font-semibold bg-sage-100 text-sage-700 border border-sage-200 focus:outline-none cursor-pointer">
+                        <option value="Основные">Основные</option>
+                        <option value="Десерты">Десерты</option>
+                        <option value="Завтраки">Завтраки</option>
+                        <option value="Выпечка">Выпечка</option>
+                        <option value="Салаты">Салаты</option>
+                        <option value="Супы">Супы</option>
+                        <option value="Напитки">Напитки</option>
+                        <option value="Соусы">Соусы</option>
+                        <option value="Другое">Другое</option>
+                    </select>
+
+                    <span id="detail-time-badge" class="px-3 py-1 rounded-full text-xs font-medium bg-cream-200 text-charcoal-700 hidden">
+                        <span id="detail-time"></span>
+                    </span>
+                </div>
+
+                <h2 id="detail-title" class="font-serif text-2xl font-semibold text-charcoal-900 leading-snug mb-6"></h2>
+
+                <section id="detail-ingredients-section" class="mb-7 hidden">
+                    <h3 class="font-serif text-lg font-semibold text-charcoal-900 mb-3">Ингредиенты</h3>
+                    <div id="detail-ingredients" class="bg-white rounded-2xl p-4 shadow-soft border border-cream-200 divide-y divide-cream-200/60"></div>
+                </section>
+
+                <section id="detail-steps-section" class="mb-7 hidden">
+                    <h3 class="font-serif text-lg font-semibold text-charcoal-900 mb-3">Приготовление</h3>
+                    <div id="detail-steps" class="space-y-3"></div>
+                </section>
+
+                <section id="detail-notes-section" class="mb-6 hidden">
+                    <h3 class="font-serif text-lg font-semibold text-charcoal-900 mb-2">Заметки</h3>
+                    <div class="bg-sage-50 border border-sage-200 rounded-2xl p-4 text-sm text-charcoal-800 whitespace-pre-line" id="detail-notes"></div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ЭКРАН ФОРМЫ (СОЗДАНИЕ / ИЗМЕНЕНИЕ) -->
+        <div id="view-form" class="hidden flex-1 flex-col bg-cream-100 pb-24 view-transition">
+            <header class="sticky top-0 z-20 bg-cream-100/95 backdrop-blur-md px-5 py-4 border-b border-cream-200 flex items-center justify-between">
+                <button type="button" onclick="cancelForm()" class="text-sm font-medium text-charcoal-700 py-1 px-2">Отмена</button>
+                <h2 id="form-header-title" class="font-serif text-lg font-semibold text-charcoal-900">Новый рецепт</h2>
+                <button type="button" onclick="saveRecipe()" class="px-4 py-1.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-sm font-semibold shadow-sm">Сохранить</button>
+            </header>
+
+            <form id="recipe-form" class="p-5 space-y-5" onsubmit="event.preventDefault(); saveRecipe();">
+                <input type="hidden" id="form-recipe-id">
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-2">Фотография</label>
+                    <div id="photo-upload-area" onclick="document.getElementById('photo-input').click()" 
+                         class="relative w-full h-48 rounded-2xl border-2 border-dashed border-cream-300 bg-white hover:bg-cream-50 flex flex-col items-center justify-center cursor-pointer overflow-hidden transition">
+                        <img id="photo-preview" src="" alt="Превью" class="hidden w-full h-full object-cover">
+                        <div id="photo-placeholder" class="flex flex-col items-center text-center p-4">
+                            <span class="text-sm font-medium text-charcoal-800">Нажмите, чтобы выбрать фото</span>
+                        </div>
+                        <button type="button" id="remove-photo-btn" onclick="removePhoto(event)" class="hidden absolute top-3 right-3 px-3 py-1.5 rounded-full bg-black/70 text-white text-xs">Удалить</button>
+                    </div>
+                    <input type="file" id="photo-input" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                </div>
+
+                <div>
+                    <label for="form-title" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Название * (можно даже одно слово)</label>
+                    <input type="text" id="form-title" required placeholder="Например: Салат или Блинчики" 
+                           class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label for="form-category" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Категория</label>
+                        <select id="form-category" class="w-full px-3 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft">
+                            <option value="Основные">Основные</option>
+                            <option value="Десерты">Десерты</option>
+                            <option value="Завтраки">Завтраки</option>
+                            <option value="Выпечка">Выпечка</option>
+                            <option value="Салаты">Салаты</option>
+                            <option value="Супы">Супы</option>
+                            <option value="Напитки">Напитки</option>
+                            <option value="Соусы">Соусы</option>
+                            <option value="Другое">Другое</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="form-time" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Время готовки</label>
+                        <input type="text" id="form-time" placeholder="15 мин" class="w-full px-3.5 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700">Ингредиенты (необязательно)</label>
+                        <button type="button" onclick="addIngredientInput()" class="text-xs font-semibold text-sage-700">+ Добавить</button>
+                    </div>
+                    <div id="form-ingredients-list" class="space-y-2"></div>
+                </div>
+
+                <div>
+                    <label for="form-steps" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Приготовление (необязательно)</label>
+                    <textarea id="form-steps" rows="4" placeholder="Можно дописать позже..." class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft"></textarea>
+                </div>
+
+                <div>
+                    <label for="form-notes" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Заметки</label>
+                    <textarea id="form-notes" rows="2" placeholder="Заметки..." class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
+    <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-cream-50 w-full max-w-md rounded-3xl p-6 shadow-2xl border border-cream-200 view-transition">
+            <h3 class="font-serif text-xl font-semibold text-charcoal-900 mb-3">Резервная копия</h3>
+            <p class="text-sm text-charcoal-700/80 mb-5">Сохраните файл с рецептами, чтобы не потерять их при очистке телефона.</p>
+            <div class="space-y-3">
+                <button onclick="exportRecipes()" class="w-full py-3 px-4 rounded-2xl bg-sage-600 text-white font-semibold text-sm">Скачать копию (JSON)</button>
+                <button onclick="document.getElementById('import-file-input').click()" class="w-full py-3 px-4 rounded-2xl bg-white border border-cream-300 text-charcoal-900 font-semibold text-sm">Восстановить из файла</button>
+                <input type="file" id="import-file-input" accept=".json" class="hidden" onchange="importRecipes(event)">
+                <button onclick="closeSettingsModal()" class="w-full py-2.5 text-xs text-charcoal-700">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО УДАЛЕНИЯ -->
+    <div id="modal-confirm" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-6 shadow-2xl text-center view-transition">
+            <h4 class="font-serif text-lg font-semibold text-charcoal-900 mb-1">Удалить рецепт?</h4>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+                <button onclick="closeConfirmModal()" class="py-2.5 rounded-xl bg-cream-100 text-sm font-semibold">Отмена</button>
+                <button id="confirm-delete-action" class="py-2.5 rounded-xl bg-red-600 text-white text-sm font-semibold">Удалить</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+        <div id="toast-message" class="px-4 py-2 rounded-full bg-charcoal-900 text-white text-xs font-medium shadow-lg"></div>
+    </div>
+
+    <script>
+        (function setupPWA() {
+            try {
+                const manifest = {
+                    name: "Моя Кулинарная Книга",
+                    short_name: "Рецепты",
+                    start_url: ".",
+                    display: "standalone",
+                    background_color: "#F2F5F3",
+                    theme_color: "#F2F5F3",
+                    icons: [{
+                        src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236B8E70'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='white'>🥑</text></svg>",
+                        sizes: "192x192",
+                        type: "image/svg+xml"
+                    }]
+                };
+                const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+                const link = document.createElement('link');
+                link.rel = 'manifest';
+                link.href = URL.createObjectURL(blob);
+                document.head.appendChild(link);
+            } catch(e) {}
+        })();
+
+        const DB_NAME = 'MyCookbookDB';
+        const DB_VERSION = 1;
+        const STORE_NAME = 'recipes';
+
+        const RecipeDB = {
+            db: null,
+            async init() {
+                return new Promise((res, rej) => {
+                    const req = indexedDB.open(DB_NAME, DB_VERSION);
+                    req.onupgradeneeded = e => {
+                        const db = e.target.result;
+                        if (!db.objectStoreNames.contains(STORE_NAME)) {
+                            db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+                        }
+                    };
+                    req.onsuccess = e => { this.db = e.target.result; res(this.db); };
+                    req.onerror = e => rej(e.target.error);
+                });
+            },
+            async getAll() {
+                if (!this.db) await this.init();
+                return new Promise(res => {
+                    const tx = this.db.transaction([STORE_NAME], 'readonly');
+                    const req = tx.objectStore(STORE_NAME).getAll();
+                    req.onsuccess = () => res((req.result || []).sort((a, b) => b.createdAt - a.createdAt));
+                });
+            },
+            async save(r) {
+                if (!this.db) await this.init();
+                return new Promise((res, rej) => {
+                    const tx = this.db.transaction([STORE_NAME], 'readwrite');
+                    const req = tx.objectStore(STORE_NAME).put(r);
+                    req.onsuccess = () => res(r);
+                    req.onerror = () => rej(req.error);
+                });
+            },
+            async delete(id) {
+                if (!this.db) await this.init();
+                return new Promise(res => {
+                    const tx = this.db.transaction([STORE_NAME], 'readwrite');
+                    const req = tx.objectStore(STORE_NAME).delete(id);
+                    req.onsuccess = () => res();
+                });
+            },
+            async clearAndBulkInsert(arr) {
+                if (!this.db) await this.init();
+                return new Promise(res => {
+                    const tx = this.db.transaction([STORE_NAME], 'readwrite');
+                    const store = tx.objectStore(STORE_NAME);
+                    store.clear();
+                    arr.forEach(r => store.put(r));
+                    tx.oncomplete = () => res();
+                });
+            }
+        };
+
+        let allRecipes = [];
+        let selectedCategory = 'Все';
+        let searchQuery = '';
+        let currentPhotoBase64 = '';
+        let currentViewingId = null;
+        const DEFAULT_CATEGORIES = ['Все', 'Основные', 'Десерты', 'Завтраки', 'Выпечка', 'Салаты', 'Супы', 'Напитки', 'Соусы', 'Другое'];
+
+        async function initApp() {
+            try {
+                await RecipeDB.init();
+                allRecipes = await RecipeDB.getAll();
+                renderCategories();
+                renderRecipes();
+                document.getElementById('search-input').addEventListener('input', e => {
+                    searchQuery = e.target.value.trim().toLowerCase();
+                    document.getElementById('clear-search-btn').classList.toggle('hidden', !searchQuery);
+                    renderRecipes();
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            searchQuery = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            renderRecipes();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('category-filters');
+            const customCats = allRecipes.map(r => r.category).filter(Boolean);
+            const uniqueCategories = Array.from(new Set([...DEFAULT_CATEGORIES, ...customCats]));
+            if (!uniqueCategories.includes(selectedCategory)) selectedCategory = 'Все';
+
+            container.innerHTML = uniqueCategories.map(cat => {
+                const isActive = cat === selectedCategory;
+                const activeClasses = isActive ? 'bg-sage-600 text-white shadow-xs' : 'bg-white text-charcoal-700 border border-cream-200 hover:bg-cream-50';
+                return `<button onclick="selectCategory('${escapeHtml(cat)}')" class="px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition active:scale-95 ${activeClasses}">${escapeHtml(cat)}</button>`;
+            }).join('');
+        }
+
+        function selectCategory(cat) {
+            selectedCategory = cat;
+            renderCategories();
+            renderRecipes();
+        }
+
+        function renderRecipes() {
+            const grid = document.getElementById('recipes-grid');
+            const emptyState = document.getElementById('empty-state');
+            const countLabel = document.getElementById('recipes-count');
+
+            const filtered = allRecipes.filter(recipe => {
+                const matchesCategory = selectedCategory === 'Все' || recipe.category === selectedCategory;
+                if (!searchQuery) return matchesCategory;
+                return matchesCategory && (recipe.title.toLowerCase().includes(searchQuery) || (recipe.ingredients || []).some(i => i.toLowerCase().includes(searchQuery)));
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden'); emptyState.classList.add('flex');
+                countLabel.textContent = '';
+                return;
+            }
+
+            emptyState.classList.add('hidden'); emptyState.classList.remove('flex');
+            countLabel.textContent = `Найдено рецептов: ${filtered.length}`;
+
+            grid.innerHTML = filtered.map(recipe => {
+                const ingCount = (recipe.ingredients || []).length;
+                return `
+                    <article onclick="openDetailView('${recipe.id}')" class="bg-white rounded-3xl overflow-hidden shadow-soft border border-cream-200 flex items-stretch cursor-pointer active:scale-[0.98] transition">
+                        <div class="w-28 sm:w-32 shrink-0 bg-cream-200 relative overflow-hidden flex items-center justify-center">
+                            ${recipe.image ? `<img src="${recipe.image}" class="w-full h-full object-cover">` : '<span class="text-2xl">🥑</span>'}
+                        </div>
+                        <div class="p-3.5 flex-1 flex flex-col justify-between min-w-0">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-1">
+                                    <span class="text-[11px] font-semibold text-sage-600 truncate">${escapeHtml(recipe.category || 'Основные')}</span>
+                                    ${recipe.time ? `<span class="text-[11px] text-charcoal-700/60">${escapeHtml(recipe.time)}</span>` : ''}
+                                </div>
+                                <h3 class="font-serif text-base font-semibold text-charcoal-900 leading-snug line-clamp-2 mb-1">${escapeHtml(recipe.title)}</h3>
+                            </div>
+                            <p class="text-xs text-charcoal-700/50">${ingCount > 0 ? ingCount + ' ингредиентов' : 'Заметка / черновик'}</p>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function switchView(viewId) {
+            ['view-home', 'view-detail', 'view-form'].forEach(id => {
+                const el = document.getElementById(id);
+                if (id === viewId) { el.classList.remove('hidden'); el.classList.add('flex'); }
+                else { el.classList.add('hidden'); el.classList.remove('flex'); }
+            });
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        function showHomeView() {
+            currentViewingId = null;
+            switchView('view-home');
+            renderCategories();
+            renderRecipes();
+        }
+
+        function openDetailView(id) {
+            const recipe = allRecipes.find(r => r.id === id);
+            if (!recipe) return;
+            currentViewingId = id;
+
+            document.getElementById('detail-title').textContent = recipe.title;
+            document.getElementById('detail-category-select').value = recipe.category || 'Основные';
+
+            const timeBadge = document.getElementById('detail-time-badge');
+            if (recipe.time) {
+                document.getElementById('detail-time').textContent = recipe.time;
+                timeBadge.classList.remove('hidden');
+            } else {
+                timeBadge.classList.add('hidden');
+            }
+
+            const imgEl = document.getElementById('detail-image');
+            const placeholderEl = document.getElementById('detail-placeholder');
+            if (recipe.image) {
+                imgEl.src = recipe.image;
+                imgEl.classList.remove('hidden');
+                placeholderEl.classList.add('hidden');
+            } else {
+                imgEl.classList.add('hidden');
+                placeholderEl.classList.remove('hidden');
+            }
+
+            const ingSection = document.getElementById('detail-ingredients-section');
+            const ingContainer = document.getElementById('detail-ingredients');
+            if (recipe.ingredients && recipe.ingredients.length > 0) {
+                ingSection.classList.remove('hidden');
+                ingContainer.innerHTML = recipe.ingredients.map((ing, idx) => `
+                    <label class="flex items-start gap-3 py-2.5 ${idx > 0 ? 'border-t border-cream-200/60' : ''} cursor-pointer">
+                        <input type="checkbox" onchange="toggleCheck(this)" class="mt-0.5 w-4 h-4 rounded border-cream-300 text-sage-600 focus:ring-sage-500/30 cursor-pointer">
+                        <span class="text-sm text-charcoal-800">${escapeHtml(ing)}</span>
+                    </label>
+                `).join('');
+            } else {
+                ingSection.classList.add('hidden');
+            }
+
+            const stepsSection = document.getElementById('detail-steps-section');
+            const stepsContainer = document.getElementById('detail-steps');
+            if (recipe.steps && recipe.steps.length > 0) {
+                stepsSection.classList.remove('hidden');
+                stepsContainer.innerHTML = recipe.steps.map((step, idx) => `
+                    <div class="bg-white p-3.5 rounded-2xl shadow-soft border border-cream-200 flex gap-3">
+                        <span class="w-6 h-6 rounded-full bg-sage-100 text-sage-700 text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+                        <p class="text-sm text-charcoal-800 leading-relaxed">${escapeHtml(step)}</p>
+                    </div>
+                `).join('');
+            } else {
+                stepsSection.classList.add('hidden');
+            }
+
+            const notesSection = document.getElementById('detail-notes-section');
+            if (recipe.notes) {
+                notesSection.classList.remove('hidden');
+                document.getElementById('detail-notes').textContent = recipe.notes;
+            } else {
+                notesSection.classList.add('hidden');
+            }
+
+            document.getElementById('detail-edit-btn').onclick = () => openEditView(recipe.id);
+            document.getElementById('detail-delete-btn').onclick = () => confirmDelete(recipe.id);
+
+            switchView('view-detail');
+        }
+
+        async function changeRecipeCategoryFromDetail(newCat) {
+            if (!currentViewingId) return;
+            const recipe = allRecipes.find(r => r.id === currentViewingId);
+            if (recipe) {
+                recipe.category = newCat;
+                recipe.updatedAt = Date.now();
+                await RecipeDB.save(recipe);
+                allRecipes = await RecipeDB.getAll();
+                showToast('Категория изменена');
+            }
+        }
+
+        function toggleCheck(cb) {
+            cb.nextElementSibling.classList.toggle('ingredient-checked', cb.checked);
+        }
+
+        function openCreateView() {
+            document.getElementById('form-header-title').textContent = 'Новый рецепт';
+            document.getElementById('recipe-form').reset();
+            document.getElementById('form-recipe-id').value = '';
+            document.getElementById('form-category').value = selectedCategory !== 'Все' ? selectedCategory : 'Основные';
+            resetPhotoPreview();
+            document.getElementById('form-ingredients-list').innerHTML = '';
+            addIngredientInput();
+            switchView('view-form');
+        }
+
+        function openEditView(id) {
+            const recipe = allRecipes.find(r => r.id === id);
+            if (!recipe) return;
+
+            document.getElementById('form-header-title').textContent = 'Редактировать рецепт';
+            document.getElementById('form-recipe-id').value = recipe.id;
+            document.getElementById('form-title').value = recipe.title;
+            document.getElementById('form-category').value = recipe.category || 'Основные';
+            document.getElementById('form-time').value = recipe.time || '';
+            document.getElementById('form-steps').value = (recipe.steps || []).join('\n');
+            document.getElementById('form-notes').value = recipe.notes || '';
+
+            if (recipe.image) {
+                currentPhotoBase64 = recipe.image;
+                showPhotoPreview(recipe.image);
+            } else {
+                resetPhotoPreview();
+            }
+
+            const ingList = document.getElementById('form-ingredients-list');
+            ingList.innerHTML = '';
+            if (recipe.ingredients && recipe.ingredients.length > 0) {
+                recipe.ingredients.forEach(ing => addIngredientInput(ing));
+            } else {
+                addIngredientInput();
+            }
+
+            switchView('view-form');
+        }
+
+        function cancelForm() {
+            if (currentViewingId) openDetailView(currentViewingId);
+            else showHomeView();
+        }
+
+        function addIngredientInput(value = '') {
+            const list = document.getElementById('form-ingredients-list');
+            const row = document.createElement('div');
+            row.className = 'flex items-center gap-2';
+            row.innerHTML = `
+                <input type="text" value="${escapeHtml(value)}" placeholder="Ингредиент..." 
+                       class="ingredient-field flex-1 px-3.5 py-2.5 bg-white border border-cream-200 rounded-xl text-sm focus:outline-none focus:border-sage-500">
+                <button type="button" onclick="this.parentElement.remove()" class="p-2 text-charcoal-700/40 hover:text-red-600">✕</button>
+            `;
+            list.appendChild(row);
+        }
+
+        function handlePhotoUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX = 800;
+                    let w = img.width, h = img.height;
+                    if (w > MAX) { h = Math.round((h * MAX) / w); w = MAX; }
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    currentPhotoBase64 = canvas.toDataURL('image/jpeg', 0.75);
+                    showPhotoPreview(currentPhotoBase64);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showPhotoPreview(b64) {
+            const prev = document.getElementById('photo-preview');
+            const place = document.getElementById('photo-placeholder');
+            const rem = document.getElementById('remove-photo-btn');
+            prev.src = b64; prev.classList.remove('hidden');
+            place.classList.add('hidden'); rem.classList.remove('hidden');
+        }
+
+        function resetPhotoPreview() {
+            currentPhotoBase64 = '';
+            document.getElementById('photo-input').value = '';
+            document.getElementById('photo-preview').classList.add('hidden');
+            document.getElementById('photo-placeholder').classList.remove('hidden');
+            document.getElementById('remove-photo-btn').classList.add('hidden');
+        }
+
+        function removePhoto(e) {
+            e.stopPropagation();
+            resetPhotoPreview();
+        }
+
+        async function saveRecipe() {
+            const titleInput = document.getElementById('form-title');
+            const title = titleInput.value.trim();
+
+            if (!title) {
+                showToast('Введите название рецепта');
+                titleInput.focus();
+                return;
+            }
+
+            const id = document.getElementById('form-recipe-id').value || 'recipe_' + Date.now();
+            const category = document.getElementById('form-category').value;
+            const time = document.getElementById('form-time').value.trim();
+            const stepsText = document.getElementById('form-steps').value.trim();
+            const notes = document.getElementById('form-notes').value.trim();
+
+            const ingredients = Array.from(document.querySelectorAll('.ingredient-field'))
+                .map(input => input.value.trim())
+                .filter(Boolean);
+
+            const existing = allRecipes.find(r => r.id === id);
+
+            const recipe = {
+                id,
+                title,
+                category,
+                time,
+                image: currentPhotoBase64 || '',
+                ingredients,
+                steps: stepsText ? stepsText.split('\n').filter(s => s.trim()) : [],
+                notes,
+                createdAt: existing ? existing.createdAt : Date.now(),
+                updatedAt: Date.now()
+            };
+
+            await RecipeDB.save(recipe);
+            allRecipes = await RecipeDB.getAll();
+            showToast('Сохранено!');
+            openDetailView(recipe.id);
+        }
+
+        function confirmDelete(id) {
+            const modal = document.getElementById('modal-confirm');
+            modal.classList.remove('hidden');
+            document.getElementById('confirm-delete-action').onclick = async () => {
+                await RecipeDB.delete(id);
+                allRecipes = await RecipeDB.getAll();
+                closeConfirmModal();
+                showHomeView();
+                showToast('Удалено');
+            };
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('modal-confirm').classList.add('hidden');
+        }
+
+        function openSettingsModal() {
+            document.getElementById('modal-settings').classList.remove('hidden');
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('modal-settings').classList.add('hidden');
+        }
+
+        function exportRecipes() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allRecipes, null, 2));
+            const dl = document.createElement('a');
+            dl.setAttribute("href", dataStr);
+            dl.setAttribute("download", "my_recipes_backup.json");
+            document.body.appendChild(dl);
+            dl.click();
+            dl.remove();
+            closeSettingsModal();
+        }
+
+        async function importRecipes(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async ev => {
+                try {
+                    const imported = JSON.parse(ev.target.result);
+                    if (Array.isArray(imported)) {
+                        await RecipeDB.clearAndBulkInsert(imported);
+                        allRecipes = await RecipeDB.getAll();
+                        showHomeView();
+                        showToast('Восстановлено!');
+                    }
+                } catch (err) { alert('Ошибка файла'); }
+            };
+            reader.readAsText(file);
+            closeSettingsModal();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => toast.classList.add('opacity-0'), 2200);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
