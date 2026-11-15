@@ -9,9 +9,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Рецепты">
     <title>Моя Кулинарная Книга</title>
-   
+    
     <script src="https://cdn.tailwindcss.com"></script>
-   
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
@@ -69,7 +69,6 @@
                                 <path d="M34 46 Q36.5 49 39 46" stroke="#2D3A24" stroke-width="2" fill="none" stroke-linecap="round"/>
                                 <circle cx="27" cy="45" r="2.2" fill="#F48FB1" opacity="0.8"/>
                                 <circle cx="46" cy="45" r="2.2" fill="#F48FB1" opacity="0.8"/>
-
                                 <path d="M68 28 C57 28 49 44 49 62 C49 77 57 88 68 88 C79 88 87 77 87 62 C87 44 79 28 68 28 Z" fill="#FFFDF7" stroke="#E8DEC8" stroke-width="2"/>
                                 <circle cx="68" cy="66" r="10.5" fill="#FACC15"/>
                                 <circle cx="65" cy="63" r="2.8" fill="#FEF08A" opacity="0.85"/>
@@ -78,7 +77,6 @@
                                 <path d="M66 52 Q68 54.5 70 52" stroke="#3F3B32" stroke-width="2" fill="none" stroke-linecap="round"/>
                                 <circle cx="59" cy="51" r="2.2" fill="#F48FB1" opacity="0.8"/>
                                 <circle cx="77" cy="51" r="2.2" fill="#F48FB1" opacity="0.8"/>
-
                                 <path d="M51 54 Q60 59 64 56" stroke="#3A5E2E" stroke-width="3" fill="none" stroke-linecap="round"/>
                                 <path d="M53 60 Q46 57 43 53" stroke="#D4C7AE" stroke-width="3" fill="none" stroke-linecap="round"/>
                                 <path d="M52 15 C52 12 48 11 48 14 C48 11 44 12 44 15 C44 18 48 21 48 21 C48 21 52 18 52 15 Z" fill="#F43F5E"/>
@@ -244,7 +242,7 @@
 
                 <div>
                     <div class="flex items-center justify-between mb-1.5">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700">Ингредиенты *</label>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700">Ингредиенты</label>
                         <button type="button" onclick="addIngredientRow()" class="text-xs font-semibold text-terracotta-600">+ Добавить строку</button>
                     </div>
                     <div id="form-ingredients-list" class="space-y-2"></div>
@@ -479,111 +477,142 @@
             const recipe = allRecipes.find(r => r.id === id);
             if (!recipe) return;
             currentViewingId = id;
+
+            document.getElementById('detail-title').textContent = recipe.title;
+            document.getElementById('detail-category').textContent = recipe.category;
             const theme = getCategoryTheme(recipe.category);
+            const catBadge = document.getElementById('detail-category');
+            catBadge.className = `px-3 py-1 rounded-full text-xs font-semibold ${theme.badge}`;
+
+            const timeEl = document.getElementById('detail-time');
+            const timeBadge = document.getElementById('detail-time-badge');
+            if (recipe.time) {
+                timeEl.textContent = recipe.time;
+                timeBadge.classList.remove('hidden');
+            } else {
+                timeBadge.classList.add('hidden');
+            }
 
             const imgEl = document.getElementById('detail-image');
             const placeholderEl = document.getElementById('detail-placeholder');
-            if (recipe.image) { imgEl.src = recipe.image; imgEl.classList.remove('hidden'); placeholderEl.classList.add('hidden'); }
-            else { imgEl.classList.add('hidden'); placeholderEl.classList.remove('hidden'); }
+            if (recipe.image) {
+                imgEl.src = recipe.image;
+                imgEl.classList.remove('hidden');
+                placeholderEl.classList.add('hidden');
+            } else {
+                imgEl.classList.add('hidden');
+                placeholderEl.classList.remove('hidden');
+            }
 
-            const catBadge = document.getElementById('detail-category');
-            catBadge.textContent = recipe.category || 'Основные';
-            catBadge.className = `px-3 py-1 rounded-full text-xs font-semibold ${theme.badge}`;
-
-            document.getElementById('detail-title').textContent = recipe.title;
-            document.getElementById('detail-time').textContent = recipe.time || '';
-            document.getElementById('detail-time-badge').classList.toggle('hidden', !recipe.time);
-
-            document.getElementById('detail-ingredients').innerHTML = (recipe.ingredients || []).map(ing => `
-                <label class="flex items-center justify-between py-2.5 first:pt-0 last:pb-0 cursor-pointer select-none">
-                    <div class="flex items-center gap-3 pr-3">
-                        <input type="checkbox" onchange="toggleCheck(this)" class="w-4 h-4 rounded border-cream-300 text-terracotta-500 cursor-pointer">
-                        <span class="text-sm text-charcoal-800">${escapeHtml(ing.name)}</span>
-                    </div>
-                    <span class="text-sm text-right font-semibold text-terracotta-700 bg-terracotta-50 px-2 py-0.5 rounded-lg">${escapeHtml(ing.amount || '')} ${escapeHtml(ing.unit || '')}</span>
-                </label>
+            const ingContainer = document.getElementById('detail-ingredients');
+            ingContainer.innerHTML = (recipe.ingredients || []).map((ing, idx) => `
+                <div class="py-2.5 flex items-center justify-between text-sm ${idx > 0 ? 'border-t border-cream-200/60' : ''}">
+                    <span class="text-charcoal-900">${escapeHtml(ing.name)}</span>
+                    <span class="font-medium text-charcoal-700">${escapeHtml(ing.amount)} ${escapeHtml(ing.unit)}</span>
+                </div>
             `).join('');
 
-            const stepsArr = Array.isArray(recipe.steps) ? recipe.steps.filter(s => s.trim()) : (recipe.steps || '').split('\n').filter(s => s.trim());
-            const stepsSec = document.getElementById('detail-steps-section');
-            if (stepsArr.length > 0) {
-                stepsSec.classList.remove('hidden');
-                document.getElementById('detail-steps').innerHTML = stepsArr.map((s, i) => `
-                    <div class="bg-white rounded-2xl p-4 shadow-soft border border-cream-200 flex gap-3.5">
-                        <span class="w-6 h-6 rounded-full bg-terracotta-100 text-terracotta-700 text-xs font-bold flex items-center justify-center shrink-0">${i + 1}</span>
-                        <p class="text-sm text-charcoal-800 leading-relaxed">${escapeHtml(s)}</p>
+            const stepsSection = document.getElementById('detail-steps-section');
+            const stepsContainer = document.getElementById('detail-steps');
+            if (recipe.steps && recipe.steps.length > 0) {
+                stepsSection.classList.remove('hidden');
+                stepsContainer.innerHTML = recipe.steps.map((step, idx) => `
+                    <div class="flex gap-3 bg-white p-3.5 rounded-2xl shadow-soft border border-cream-200">
+                        <span class="w-6 h-6 rounded-full bg-terracotta-50 text-terracotta-600 text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+                        <p class="text-sm text-charcoal-800 leading-relaxed">${escapeHtml(step)}</p>
                     </div>
                 `).join('');
-            } else { stepsSec.classList.add('hidden'); }
+            } else {
+                stepsSection.classList.add('hidden');
+            }
 
-            const notesSec = document.getElementById('detail-notes-section');
-            if (recipe.notes && recipe.notes.trim()) {
-                document.getElementById('detail-notes').textContent = recipe.notes;
-                notesSec.classList.remove('hidden');
-            } else { notesSec.classList.add('hidden'); }
+            const notesSection = document.getElementById('detail-notes-section');
+            const notesEl = document.getElementById('detail-notes');
+            if (recipe.notes) {
+                notesSection.classList.remove('hidden');
+                notesEl.textContent = recipe.notes;
+            } else {
+                notesSection.classList.add('hidden');
+            }
 
             document.getElementById('detail-edit-btn').onclick = () => openEditView(recipe.id);
             document.getElementById('detail-delete-btn').onclick = () => confirmDelete(recipe.id);
-            switchView('view-detail');
-        }
 
-        function toggleCheck(cb) {
-            cb.closest('label').classList.toggle('opacity-50', cb.checked);
-            cb.closest('label').querySelector('span').classList.toggle('ingredient-checked', cb.checked);
+            switchView('view-detail');
         }
 
         function openCreateView() {
             document.getElementById('form-header-title').textContent = 'Новый рецепт';
+            document.getElementById('recipe-form').reset();
             document.getElementById('form-recipe-id').value = '';
-            document.getElementById('form-title').value = '';
-            document.getElementById('form-category').value = selectedCategory !== 'Все' ? selectedCategory : 'Основные';
-            document.getElementById('form-time').value = '';
-            document.getElementById('form-steps').value = '';
-            document.getElementById('form-notes').value = '';
-            resetPhoto();
+            currentPhotoBase64 = '';
+            document.getElementById('photo-preview').classList.add('hidden');
+            document.getElementById('photo-placeholder').classList.remove('hidden');
+            document.getElementById('remove-photo-btn').classList.add('hidden');
             document.getElementById('form-ingredients-list').innerHTML = '';
-            addIngredientRow(); addIngredientRow(); addIngredientRow();
+            addIngredientRow();
+            addIngredientRow();
             switchView('view-form');
         }
 
         function openEditView(id) {
             const recipe = allRecipes.find(r => r.id === id);
             if (!recipe) return;
-            document.getElementById('form-header-title').textContent = 'Редактировать';
+
+            document.getElementById('form-header-title').textContent = 'Редактировать рецепт';
             document.getElementById('form-recipe-id').value = recipe.id;
             document.getElementById('form-title').value = recipe.title;
             document.getElementById('form-category').value = recipe.category || 'Основные';
             document.getElementById('form-time').value = recipe.time || '';
+            document.getElementById('form-steps').value = (recipe.steps || []).join('\n');
             document.getElementById('form-notes').value = recipe.notes || '';
-            document.getElementById('form-steps').value = Array.isArray(recipe.steps) ? recipe.steps.join('\n') : (recipe.steps || '');
 
-            if (recipe.image) { currentPhotoBase64 = recipe.image; showPhotoPreview(recipe.image); }
-            else { resetPhoto(); }
+            currentPhotoBase64 = recipe.image || '';
+            const preview = document.getElementById('photo-preview');
+            const placeholder = document.getElementById('photo-placeholder');
+            const removeBtn = document.getElementById('remove-photo-btn');
 
-            const list = document.getElementById('form-ingredients-list');
-            list.innerHTML = '';
-            (recipe.ingredients || [{name: '', amount: '', unit: 'г'}]).forEach(i => addIngredientRow(i));
+            if (currentPhotoBase64) {
+                preview.src = currentPhotoBase64;
+                preview.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                removeBtn.classList.remove('hidden');
+            } else {
+                preview.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                removeBtn.classList.add('hidden');
+            }
+
+            const ingList = document.getElementById('form-ingredients-list');
+            ingList.innerHTML = '';
+            if (recipe.ingredients && recipe.ingredients.length > 0) {
+                recipe.ingredients.forEach(ing => addIngredientRow(ing.name, ing.amount, ing.unit));
+            } else {
+                addIngredientRow();
+            }
+
             switchView('view-form');
         }
 
         function cancelForm() {
-            if (currentViewingId) openDetailView(currentViewingId);
-            else showHomeView();
+            if (currentViewingId) {
+                openDetailView(currentViewingId);
+            } else {
+                showHomeView();
+            }
         }
 
-        function addIngredientRow(data = { name: '', amount: '', unit: 'г' }) {
+        function addIngredientRow(name = '', amount = '', unit = 'г') {
             const list = document.getElementById('form-ingredients-list');
             const row = document.createElement('div');
-            row.className = 'ingredient-row grid grid-cols-12 gap-1.5 items-center';
+            row.className = 'ingredient-row flex items-center gap-2';
             row.innerHTML = `
-                <div class="col-span-5"><input type="text" value="${escapeHtml(data.name || '')}" placeholder="Продукт" class="ing-name w-full px-3 py-2.5 bg-white border border-cream-200 rounded-xl text-sm"></div>
-                <div class="col-span-3"><input type="text" inputmode="decimal" value="${escapeHtml(data.amount || '')}" placeholder="Кол-во" class="ing-amount w-full px-3 py-2.5 bg-white border border-cream-200 rounded-xl text-sm text-center"></div>
-                <div class="col-span-3">
-                    <select class="ing-unit w-full px-2 py-2.5 bg-white border border-cream-200 rounded-xl text-xs cursor-pointer">
-                        ${UNITS_LIST.map(u => `<option value="${u}" ${data.unit === u ? 'selected' : ''}>${u}</option>`).join('')}
-                    </select>
-                </div>
-                <div class="col-span-1 flex justify-center"><button type="button" onclick="this.closest('.ingredient-row').remove()" class="p-2 text-charcoal-700/40 hover:text-red-500">✕</button></div>
+                <input type="text" placeholder="Ингредиент" value="${escapeHtml(name)}" class="ing-name flex-1 px-3.5 py-2.5 bg-white border border-cream-200 rounded-xl text-sm focus:outline-none focus:border-terracotta-500">
+                <input type="text" placeholder="Кол-во" value="${escapeHtml(amount)}" class="ing-amount w-20 px-3 py-2.5 bg-white border border-cream-200 rounded-xl text-sm focus:outline-none focus:border-terracotta-500">
+                <select class="ing-unit w-24 px-2 py-2.5 bg-white border border-cream-200 rounded-xl text-xs focus:outline-none focus:border-terracotta-500">
+                    ${UNITS_LIST.map(u => `<option value="${u}" ${u === unit ? 'selected' : ''}>${u}</option>`).join('')}
+                </select>
+                <button type="button" onclick="this.parentElement.remove()" class="p-2 text-charcoal-700/40 hover:text-red-600">✕</button>
             `;
             list.appendChild(row);
         }
@@ -592,131 +621,154 @@
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = ev => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    let w = img.width, h = img.height;
-                    if (w > 800) { h = Math.round((h * 800) / w); w = 800; }
-                    canvas.width = w; canvas.height = h;
-                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                    currentPhotoBase64 = canvas.toDataURL('image/jpeg', 0.8);
-                    showPhotoPreview(currentPhotoBase64);
-                };
-                img.src = ev.target.result;
+            reader.onload = function(event) {
+                currentPhotoBase64 = event.target.result;
+                const preview = document.getElementById('photo-preview');
+                const placeholder = document.getElementById('photo-placeholder');
+                const removeBtn = document.getElementById('remove-photo-btn');
+                preview.src = currentPhotoBase64;
+                preview.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                removeBtn.classList.remove('hidden');
             };
             reader.readAsDataURL(file);
         }
 
-        function showPhotoPreview(b64) {
-            document.getElementById('photo-preview').src = b64;
-            document.getElementById('photo-preview').classList.remove('hidden');
-            document.getElementById('photo-placeholder').classList.add('hidden');
-            document.getElementById('remove-photo-btn').classList.remove('hidden');
-        }
-
-        function resetPhoto() {
+        function removePhoto(e) {
+            e.stopPropagation();
             currentPhotoBase64 = '';
             document.getElementById('photo-input').value = '';
-            document.getElementById('photo-preview').src = '';
             document.getElementById('photo-preview').classList.add('hidden');
             document.getElementById('photo-placeholder').classList.remove('hidden');
             document.getElementById('remove-photo-btn').classList.add('hidden');
         }
 
-        function removePhoto(e) { e.stopPropagation(); resetPhoto(); }
-
         async function saveRecipe() {
-            const title = document.getElementById('form-title').value.trim();
-            if (!title) { showToast('Введите название'); return; }
+            const titleInput = document.getElementById('form-title');
+            const title = titleInput.value.trim();
 
-            const ingredients = Array.from(document.querySelectorAll('.ingredient-row')).map(row => ({
-                name: row.querySelector('.ing-name').value.trim(),
-                amount: row.querySelector('.ing-amount').value.trim(),
-                unit: row.querySelector('.ing-unit').value
-            })).filter(i => i.name);
+            if (!title) {
+                alert('Пожалуйста, введите название рецепта');
+                titleInput.focus();
+                return;
+            }
 
-            if (ingredients.length === 0) { showToast('Добавьте ингредиенты'); return; }
+            const id = document.getElementById('form-recipe-id').value || 'recipe_' + Date.now();
+            const category = document.getElementById('form-category').value;
+            const time = document.getElementById('form-time').value.trim();
+            const stepsText = document.getElementById('form-steps').value.trim();
+            const notes = document.getElementById('form-notes').value.trim();
 
-            const id = document.getElementById('form-recipe-id').value || ('recipe-' + Date.now());
-            const existing = allRecipes.find(r => r.id === id);
+            const ingredients = [];
+            document.querySelectorAll('.ingredient-row').forEach(row => {
+                const name = row.querySelector('.ing-name').value.trim();
+                const amount = row.querySelector('.ing-amount').value.trim();
+                const unit = row.querySelector('.ing-unit').value;
+                if (name) {
+                    ingredients.push({ name, amount, unit });
+                }
+            });
 
-            const recipeObj = {
+            const recipe = {
                 id,
                 title,
-                category: document.getElementById('form-category').value,
-                time: document.getElementById('form-time').value.trim(),
-                image: currentPhotoBase64,
+                category,
+                time,
+                image: currentPhotoBase64 || '',
                 ingredients,
-                steps: document.getElementById('form-steps').value.trim().split('\n').filter(Boolean),
-                notes: document.getElementById('form-notes').value.trim(),
-                createdAt: existing ? existing.createdAt : Date.now(),
-                updatedAt: Date.now()
+                steps: stepsText ? stepsText.split('\n').filter(s => s.trim()) : [],
+                notes,
+                createdAt: Date.now()
             };
 
-            await RecipeDB.save(recipeObj);
+            await RecipeDB.save(recipe);
             allRecipes = await RecipeDB.getAll();
-            showToast('Сохранено!');
-            openDetailView(recipeObj.id);
+            showHomeView();
+            showToast('Рецепт успешно сохранен!');
         }
 
         function confirmDelete(id) {
-            document.getElementById('modal-confirm').classList.remove('hidden');
+            const modal = document.getElementById('modal-confirm');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
             document.getElementById('confirm-delete-action').onclick = async () => {
                 await RecipeDB.delete(id);
                 allRecipes = await RecipeDB.getAll();
                 closeConfirmModal();
                 showHomeView();
-                showToast('Удалено');
+                showToast('Рецепт удален');
             };
         }
 
-        function closeConfirmModal() { document.getElementById('modal-confirm').classList.add('hidden'); }
-        function openSettingsModal() { document.getElementById('modal-settings').classList.remove('hidden'); }
-        function closeSettingsModal() { document.getElementById('modal-settings').classList.add('hidden'); }
-
-        function exportRecipes() {
-            const blob = new Blob([JSON.stringify(allRecipes, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `recipes_${Date.now()}.json`;
-            a.click();
-            showToast('Копия скачана');
+        function closeConfirmModal() {
+            const modal = document.getElementById('modal-confirm');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
-        function importRecipes(e) {
+        function openSettingsModal() {
+            const m = document.getElementById('modal-settings');
+            m.classList.remove('hidden'); m.classList.add('flex');
+        }
+
+        function closeSettingsModal() {
+            const m = document.getElementById('modal-settings');
+            m.classList.add('hidden'); m.classList.remove('flex');
+        }
+
+        function exportRecipes() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allRecipes, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", "my_recipes_backup.json");
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+            closeSettingsModal();
+        }
+
+        async function importRecipes(e) {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = async ev => {
+            reader.onload = async function(event) {
                 try {
-                    const arr = JSON.parse(ev.target.result);
-                    await RecipeDB.clearAndBulkInsert(arr);
-                    allRecipes = await RecipeDB.getAll();
-                    closeSettingsModal();
-                    showHomeView();
-                    showToast('Восстановлено!');
-                } catch { showToast('Ошибка файла'); }
+                    const imported = JSON.parse(event.target.result);
+                    if (Array.isArray(imported)) {
+                        await RecipeDB.clearAndBulkInsert(imported);
+                        allRecipes = await RecipeDB.getAll();
+                        showHomeView();
+                        showToast('Рецепты успешно восстановлены!');
+                    }
+                } catch (err) {
+                    alert('Ошибка при чтении файла резервной копии');
+                }
             };
             reader.readAsText(file);
+            closeSettingsModal();
         }
 
         function showToast(msg) {
-            const t = document.getElementById('toast');
-            document.getElementById('toast-message').textContent = msg;
-            t.classList.remove('opacity-0');
-            clearTimeout(window._t);
-            window._t = setTimeout(() => t.classList.add('opacity-0'), 2500);
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = msg;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 2500);
         }
 
         function escapeHtml(str) {
             if (!str) return '';
-            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
-
- 
