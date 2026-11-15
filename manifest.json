@@ -1,5 +1,4 @@
-{
-  "name": "Моя Кулинарная Книга",
+"name": "Моя Кулинарная Книга",
   "short_name": "Рецепты",
   "start_url": "./index.html",
   "display": "standalone",
@@ -7,9 +6,10 @@
   "theme_color": "#4D7C3E",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "./icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
