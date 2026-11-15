@@ -1,0 +1,11 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Рецепты",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Рецепты",
+  "start_url": "/",
+  "theme_color": "#F7F9F7"
+}
