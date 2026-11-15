@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
+    <link rel="manifest" href="./manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#F2F5F3">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Рецепты">
     <title>Моя Кулинарная Книга</title>
-    
+   
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@500;600&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -25,26 +25,9 @@
                         serif: ['Lora', 'serif'],
                     },
                     colors: {
-                        cream: {
-                            50: '#F9FBF9',
-                            100: '#F2F5F3',
-                            200: '#E4ECE5',
-                            300: '#D2DDD4',
-                        },
-                        sage: {
-                            50: '#F0F5F1',
-                            100: '#E1ECE3',
-                            200: '#C4D8C7',
-                            400: '#8DAE92',
-                            500: '#6B8E70',
-                            600: '#547258',
-                            700: '#415844',
-                        },
-                        charcoal: {
-                            700: '#444B45',
-                            800: '#2E342F',
-                            900: '#1C201D',
-                        }
+                        cream: { 50: '#F9FBF9', 100: '#F2F5F3', 200: '#E4ECE5', 300: '#D2DDD4' },
+                        sage: { 50: '#F0F5F1', 100: '#E1ECE3', 200: '#C4D8C7', 400: '#8DAE92', 500: '#6B8E70', 600: '#547258', 700: '#415844' },
+                        charcoal: { 700: '#444B45', 800: '#2E342F', 900: '#1C201D' }
                     },
                     boxShadow: {
                         'soft': '0 4px 20px -2px rgba(65, 88, 68, 0.06)',
@@ -75,25 +58,7 @@
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-3">
                         <div class="w-13 h-13 rounded-2xl bg-sage-100 border border-sage-200 shadow-soft flex items-center justify-center shrink-0 overflow-hidden p-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-12 h-12">
-                                <path d="M35 15 C20 15 12 37 12 57 C12 75 22 88 35 88 C48 88 56 75 56 57 C56 37 48 15 35 15 Z" fill="#415844"/>
-                                <path d="M35 20 C23 20 17 39 17 57 C17 72 25 83 35 83 C45 83 51 72 51 57 C51 39 45 20 35 20 Z" fill="#C2D8C5"/>
-                                <circle cx="35" cy="62" r="10" fill="#8C5830"/>
-                                <circle cx="32" cy="59" r="2.5" fill="#A77044" opacity="0.7"/>
-                                <path d="M28 42 Q30 39 32 42" stroke="#2D3A2F" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                <path d="M38 42 Q40 39 42 42" stroke="#2D3A2F" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                <path d="M33 46 Q35 48.5 37 46" stroke="#2D3A2F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                                <circle cx="26" cy="45" r="2" fill="#F472B6" opacity="0.8"/>
-                                <circle cx="44" cy="45" r="2" fill="#F472B6" opacity="0.8"/>
-                                <path d="M65 25 C55 25 48 40 48 58 C48 74 55 88 65 88 C75 88 82 74 82 58 C82 40 75 25 65 25 Z" fill="#FFFDF9" stroke="#D1DCD3" stroke-width="2"/>
-                                <circle cx="65" cy="64" r="9.5" fill="#FACC15"/>
-                                <path d="M59 47 Q61 44 63 47" stroke="#37413B" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                <path d="M67 47 Q69 44 71 47" stroke="#37413B" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                <path d="M63 51 Q65 53 67 51" stroke="#37413B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                                <circle cx="56" cy="50" r="1.8" fill="#F472B6" opacity="0.8"/>
-                                <circle cx="74" cy="50" r="1.8" fill="#F472B6" opacity="0.8"/>
-                                <path d="M48 55 Q56 61 52 68" stroke="#415844" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                            </svg>
+                            <span class="text-2xl">🥑</span>
                         </div>
                         <div>
                             <p class="text-xs font-medium uppercase tracking-wider text-sage-600 mb-0.5">Шалфейная коллекция</p>
@@ -102,8 +67,8 @@
                     </div>
                     <button onclick="openSettingsModal()" class="p-2.5 rounded-2xl bg-white text-charcoal-700 shadow-soft border border-cream-200 hover:bg-cream-50 active:scale-95 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                     </button>
                 </div>
@@ -111,14 +76,13 @@
                 <div class="relative mb-3">
                     <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-charcoal-700/50">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </span>
-                    <input type="text" id="search-input" placeholder="Поиск по названию или ингредиенту..." 
-                           class="w-full pl-10 pr-9 py-2.5 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 placeholder-charcoal-700/45 focus:outline-none focus:border-sage-500 shadow-soft transition">
+                    <input type="text" id="search-input" placeholder="Поиск по названию или ингредиенту..." class="w-full pl-10 pr-9 py-2.5 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 placeholder-charcoal-700/45 focus:outline-none focus:border-sage-500 shadow-soft transition">
                     <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-charcoal-700/50 hover:text-charcoal-900">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                         </svg>
                     </button>
                 </div>
@@ -133,18 +97,17 @@
                 <div id="empty-state" class="hidden flex-col items-center justify-center text-center py-16 px-4">
                     <div class="w-20 h-20 rounded-full bg-sage-50 text-sage-600 flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
                     <h3 class="font-serif text-lg font-semibold text-charcoal-900 mb-1">Рецептов пока не найдено</h3>
-                    <p class="text-sm text-charcoal-700/70 max-w-xs mb-6">Нажмите на кнопку «+» внизу, чтобы добавить первый рецепт (можно записать даже одно слово!).</p>
+                    <p class="text-sm text-charcoal-700/70 max-w-xs mb-6">Нажмите на кнопку «+» внизу, чтобы добавить первый рецепт.</p>
                 </div>
             </main>
 
-            <button onclick="openCreateView()" aria-label="Добавить рецепт" 
-                    class="fixed bottom-6 right-6 sm:right-[calc(50%-12.5rem)] z-30 w-14 h-14 rounded-full bg-sage-600 hover:bg-sage-700 text-white shadow-float flex items-center justify-center active:scale-90 transition">
+            <button onclick="openCreateView()" aria-label="Добавить рецепт" class="fixed bottom-6 right-6 sm:right-[calc(50%-12.5rem)] z-30 w-14 h-14 rounded-full bg-sage-600 hover:bg-sage-700 text-white shadow-float flex items-center justify-center active:scale-90 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
                 </svg>
             </button>
         </div>
@@ -161,17 +124,13 @@
                 <div class="absolute top-4 inset-x-4 flex items-center justify-between">
                     <button onclick="showHomeView()" class="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-charcoal-900 shadow-md flex items-center justify-center active:scale-95 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
                         </svg>
                     </button>
 
                     <div class="flex items-center gap-2">
-                        <button id="detail-edit-btn" class="px-3.5 py-2 rounded-full bg-white/90 backdrop-blur-md text-charcoal-900 text-xs font-semibold shadow-md flex items-center gap-1.5">
-                            Изменить
-                        </button>
-                        <button id="detail-delete-btn" aria-label="Удалить" class="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-red-600 shadow-md flex items-center justify-center">
-                            ✕
-                        </button>
+                        <button id="detail-edit-btn" class="px-3.5 py-2 rounded-full bg-white/90 backdrop-blur-md text-charcoal-900 text-xs font-semibold shadow-md flex items-center gap-1.5">Изменить</button>
+                        <button id="detail-delete-btn" aria-label="Удалить" class="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-red-600 shadow-md flex items-center justify-center">✕</button>
                     </div>
                 </div>
             </div>
@@ -214,7 +173,7 @@
             </div>
         </div>
 
-        <!-- ЭКРАН ФОРМЫ (СОЗДАНИЕ / ИЗМЕНЕНИЕ) -->
+        <!-- ЭКРАН ФОРМЫ -->
         <div id="view-form" class="hidden flex-1 flex-col bg-cream-100 pb-24 view-transition">
             <header class="sticky top-0 z-20 bg-cream-100/95 backdrop-blur-md px-5 py-4 border-b border-cream-200 flex items-center justify-between">
                 <button type="button" onclick="cancelForm()" class="text-sm font-medium text-charcoal-700 py-1 px-2">Отмена</button>
@@ -227,8 +186,7 @@
 
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-2">Фотография</label>
-                    <div id="photo-upload-area" onclick="document.getElementById('photo-input').click()" 
-                         class="relative w-full h-48 rounded-2xl border-2 border-dashed border-cream-300 bg-white hover:bg-cream-50 flex flex-col items-center justify-center cursor-pointer overflow-hidden transition">
+                    <div id="photo-upload-area" onclick="document.getElementById('photo-input').click()" class="relative w-full h-48 rounded-2xl border-2 border-dashed border-cream-300 bg-white hover:bg-cream-50 flex flex-col items-center justify-center cursor-pointer overflow-hidden transition">
                         <img id="photo-preview" src="" alt="Превью" class="hidden w-full h-full object-cover">
                         <div id="photo-placeholder" class="flex flex-col items-center text-center p-4">
                             <span class="text-sm font-medium text-charcoal-800">Нажмите, чтобы выбрать фото</span>
@@ -239,9 +197,8 @@
                 </div>
 
                 <div>
-                    <label for="form-title" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Название * (можно даже одно слово)</label>
-                    <input type="text" id="form-title" required placeholder="Например: Салат или Блинчики" 
-                           class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft">
+                    <label for="form-title" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Название *</label>
+                    <input type="text" id="form-title" required placeholder="Например: Салат" class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -268,15 +225,15 @@
 
                 <div>
                     <div class="flex items-center justify-between mb-1.5">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700">Ингредиенты (необязательно)</label>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700">Ингредиенты</label>
                         <button type="button" onclick="addIngredientInput()" class="text-xs font-semibold text-sage-700">+ Добавить</button>
                     </div>
                     <div id="form-ingredients-list" class="space-y-2"></div>
                 </div>
 
                 <div>
-                    <label for="form-steps" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Приготовление (необязательно)</label>
-                    <textarea id="form-steps" rows="4" placeholder="Можно дописать позже..." class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft"></textarea>
+                    <label for="form-steps" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-700 mb-1.5">Приготовление</label>
+                    <textarea id="form-steps" rows="4" placeholder="Шаги..." class="w-full px-4 py-3 bg-white border border-cream-200 rounded-2xl text-sm text-charcoal-900 focus:outline-none focus:border-sage-500 shadow-soft"></textarea>
                 </div>
 
                 <div>
@@ -291,7 +248,7 @@
     <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
         <div class="bg-cream-50 w-full max-w-md rounded-3xl p-6 shadow-2xl border border-cream-200 view-transition">
             <h3 class="font-serif text-xl font-semibold text-charcoal-900 mb-3">Резервная копия</h3>
-            <p class="text-sm text-charcoal-700/80 mb-5">Сохраните файл с рецептами, чтобы не потерять их при очистке телефона.</p>
+            <p class="text-sm text-charcoal-700/80 mb-5">Сохраните файл с рецептами, чтобы не потерять их.</p>
             <div class="space-y-3">
                 <button onclick="exportRecipes()" class="w-full py-3 px-4 rounded-2xl bg-sage-600 text-white font-semibold text-sm">Скачать копию (JSON)</button>
                 <button onclick="document.getElementById('import-file-input').click()" class="w-full py-3 px-4 rounded-2xl bg-white border border-cream-300 text-charcoal-900 font-semibold text-sm">Восстановить из файла</button>
@@ -317,29 +274,6 @@
     </div>
 
     <script>
-        (function setupPWA() {
-            try {
-                const manifest = {
-                    name: "Моя Кулинарная Книга",
-                    short_name: "Рецепты",
-                    start_url: ".",
-                    display: "standalone",
-                    background_color: "#F2F5F3",
-                    theme_color: "#F2F5F3",
-                    icons: [{
-                        src: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236B8E70'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='white'>🥑</text></svg>",
-                        sizes: "192x192",
-                        type: "image/svg+xml"
-                    }]
-                };
-                const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-                const link = document.createElement('link');
-                link.rel = 'manifest';
-                link.href = URL.createObjectURL(blob);
-                document.head.appendChild(link);
-            } catch(e) {}
-        })();
-
         const DB_NAME = 'MyCookbookDB';
         const DB_VERSION = 1;
         const STORE_NAME = 'recipes';
@@ -638,7 +572,7 @@
             const row = document.createElement('div');
             row.className = 'flex items-center gap-2';
             row.innerHTML = `
-                <input type="text" value="${escapeHtml(value)}" placeholder="Ингредиент..." 
+                <input type="text" value="${escapeHtml(value)}" placeholder="Ингредиент..."
                        class="ingredient-field flex-1 px-3.5 py-2.5 bg-white border border-cream-200 rounded-xl text-sm focus:outline-none focus:border-sage-500">
                 <button type="button" onclick="this.parentElement.remove()" class="p-2 text-charcoal-700/40 hover:text-red-600">✕</button>
             `;
@@ -761,63 +695,3 @@
             dl.click();
             dl.remove();
             closeSettingsModal();
-        }
-
-        async function importRecipes(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async ev => {
-                try {
-                    const imported = JSON.parse(ev.target.result);
-                    if (Array.isArray(imported)) {
-                        await RecipeDB.clearAndBulkInsert(imported);
-                        allRecipes = await RecipeDB.getAll();
-                        showHomeView();
-                        showToast('Восстановлено!');
-                    }
-                } catch (err) { alert('Ошибка файла'); }
-            };
-            reader.readAsText(file);
-            closeSettingsModal();
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').textContent = msg;
-            toast.classList.remove('opacity-0');
-            setTimeout(() => toast.classList.add('opacity-0'), 2200);
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        window.addEventListener('DOMContentLoaded', initApp);
-        const CACHE_NAME = 'my-recipes-v1';
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll([
-        './',
-        './index.html'
-      ]);
-    })
-  );
-  self.skipWaiting();
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
-  );
-});
