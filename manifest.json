@@ -1,11 +1,17 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "Мои рецепты",
-  "orientation": "any",
-  "scope": "/",
+  "name": "Моя Кулинарная Книга",
   "short_name": "Рецепты",
-  "start_url": "/",
-  "theme_color": "#F7F9F7"
+  "start_url": "/my-recipes1/",
+  "scope": "/my-recipes1/",
+  "display": "standalone",
+  "background_color": "#F7F9F7",
+  "theme_color": "#F7F9F7",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3076/3076137.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
