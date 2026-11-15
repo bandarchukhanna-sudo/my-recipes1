@@ -1,24 +1,14 @@
-{
-  "name": "Моя книга рецептов",
-  "short_name": "Рецепты",
-  "description": "Сборник моих любимых домашних рецептов",
-  "id": "/my-recipes1/",
-  "start_url": "/my-recipes1/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
-}
+"icons": [
+  {
+    "src": "/assets/icons/icon-192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "any"
+  },
+  {
+    "src": "/assets/icons/icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any"
+  }
+]
