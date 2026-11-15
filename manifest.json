@@ -1,14 +1,36 @@
+{
+"name": "Мои Рецепты",
+"short_name": "Рецепты",
+"description": "Удобное приложение с домашними кулинарными рецептами на каждый день.",
+"start_url": "/my-recipes1/",
+"id": "/my-recipes1/",
+"display": "standalone",
+"background_color": "#ffffff",
+"theme_color": "#4A7C59",
+"orientation": "portrait",
 "icons": [
-  {
-    "src": "/assets/icons/icon-192.png",
-    "sizes": "192x192",
-    "type": "image/png",
-    "purpose": "any"
-  },
-  {
-    "src": "/assets/icons/icon-512.png",
-    "sizes": "512x512",
-    "type": "image/png",
-    "purpose": "any"
-  }
+{
+"src": "icons/icon-192.png",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "any"
+},
+{
+"src": "icons/icon-512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "any"
+},
+{
+"src": "icons/icon-512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "maskable"
+}
+],
+"categories": [
+"food",
+"lifestyle",
+"utilities"
 ]
+}
